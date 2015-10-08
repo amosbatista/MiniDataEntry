@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5f4774c3e508450bbddfdbfd19e4de8f" Name="Diagram1" >
+        <EntityTypeShape EntityType="DataEntryEntityModel.Campo" Width="1.5" PointX="1" PointY="1" />
+        <EntityTypeShape EntityType="DataEntryEntityModel.Definicao" Width="1.5" PointX="3.625" PointY="1.125" />
+        <AssociationConnector Association="DataEntryEntityModel.DefinicaoCampo" />
+        <EntityTypeShape EntityType="DataEntryEntityModel.IndexacaoCampo" Width="2.125" PointX="1.25" PointY="3.625" />
+        <AssociationConnector Association="DataEntryEntityModel.IndexacaoCampo_Campo" />
+        <EntityTypeShape EntityType="DataEntryEntityModel.Documento" Width="1.5" PointX="4" PointY="3.5" />
+        <AssociationConnector Association="DataEntryEntityModel.DocumentoDefinicao" />
+        <AssociationConnector Association="DataEntryEntityModel.DocumentoIndexacaoCampo" />
+        <EntityTypeShape EntityType="DataEntryEntityModel.Trabalho" Width="1.5" PointX="5.875" PointY="3.625" />
+        <AssociationConnector Association="DataEntryEntityModel.TrabalhoDocumento" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

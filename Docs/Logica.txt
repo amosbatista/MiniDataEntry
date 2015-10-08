@@ -1,0 +1,66 @@
+Mini DataEntry:
+
+---- Model -------------------------------------------------
+Cada documento terá 1 Definição 
+Um campo conterá um valor em string. Um campo terá um nome.
+Cada Definição uma relação de N campos. 
+Um Trabalho terá N Documentos
+Um documento poderá ser adicionado em um Trabalho.
+Cada Trabalho será armazenado na base de dados.
+um Trabalho terá uma data de cadastro, para vizualização.
+
+Trabalho
+	- Documentos
+		- Definição
+			- Campos
+
+Indexacacao_campos
+	- Campos que já foram indexados.
+	- Id Indexação
+	- Id Campo
+	- Valor
+	
+Documento terá apenas campos indexados
+	Documento
+		Indexacacao_campos
+		Indexacacao_campos
+		Indexacacao_campos
+
+		Cada Trabalho terá N documentos
+		Trabalho
+			Documento
+			Documento
+			Documento
+
+-- Control --------------------------------------
+Fluxo do sistema:
+
+--- Definição
+Criação de projeto:
+	Criar um projeto de data entry, contendo o nome da Definição.
+	Depois da definição, será criado cada campo. 
+		Cada campo será criado, digitando o nome.
+	Depois que todos os campos forem criados, a definição e os campos serão salvos.
+
+Criação de campo
+	Dentro do processo de criação de Definição, receber o nome do campo.
+
+Lista de projetos
+	Lista de todas as definições que existirem
+
+-- Trabalhos
+Lista de trabalhos
+	Lista de todos os trabalhos que existirem.
+
+Iniciar trabalho
+	Cria um novo trabalho. Armazena os documentos existentes.
+
+Adiciona documento
+	Dentro de um trabalho, recebe uma lista de indexações (campos com nomes já digitados)
+
+Salvar trabalho
+	Encerra o trabalho do desenvolvimento
+
+
+Ferramentas:
+	- No projeto, ir em Add > New Item > ADO.NET Entity Data Model

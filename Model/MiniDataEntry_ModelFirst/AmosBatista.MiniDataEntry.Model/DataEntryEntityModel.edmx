@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DataEntryEntityModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DataEntryEntityModelTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DataEntryEntityModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DataEntryEntityModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Campoes" EntityType="DataEntryEntityModel.Campo" />
+          <EntitySet Name="Definicaos" EntityType="DataEntryEntityModel.Definicao" />
+          <AssociationSet Name="DefinicaoCampo" Association="DataEntryEntityModel.DefinicaoCampo">
+            <End Role="Definicao" EntitySet="Definicaos" />
+            <End Role="Campo" EntitySet="Campoes" />
+          </AssociationSet>
+          <EntitySet Name="IndexacaoCampoes" EntityType="DataEntryEntityModel.IndexacaoCampo" />
+          <AssociationSet Name="IndexacaoCampo_Campo" Association="DataEntryEntityModel.IndexacaoCampo_Campo">
+            <End Role="IndexacaoCampo" EntitySet="IndexacaoCampoes" />
+            <End Role="Campo" EntitySet="Campoes" />
+          </AssociationSet>
+          <EntitySet Name="Documentoes" EntityType="DataEntryEntityModel.Documento" />
+          <AssociationSet Name="DocumentoDefinicao" Association="DataEntryEntityModel.DocumentoDefinicao">
+            <End Role="Documento" EntitySet="Documentoes" />
+            <End Role="Definicao" EntitySet="Definicaos" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentoIndexacaoCampo" Association="DataEntryEntityModel.DocumentoIndexacaoCampo">
+            <End Role="Documento" EntitySet="Documentoes" />
+            <End Role="IndexacaoCampo" EntitySet="IndexacaoCampoes" />
+          </AssociationSet>
+          <EntitySet Name="Trabalhoes" EntityType="DataEntryEntityModel.Trabalho" />
+          <AssociationSet Name="TrabalhoDocumento" Association="DataEntryEntityModel.TrabalhoDocumento">
+            <End Role="Trabalho" EntitySet="Trabalhoes" />
+            <End Role="Documento" EntitySet="Documentoes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Campo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" cg:SetterAccess="Private" />
+          <Property Name="Nome" Type="String" Nullable="false" FixedLength="true" MaxLength="50" />
+          <NavigationProperty Name="Definicao" Relationship="DataEntryEntityModel.DefinicaoCampo" FromRole="Campo" ToRole="Definicao" />
+          <Property Name="DefinicaoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IndexacaoCampoes" Relationship="DataEntryEntityModel.IndexacaoCampo_Campo" FromRole="Campo" ToRole="IndexacaoCampo" />
+        </EntityType>
+        <EntityType Name="Definicao">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" cg:SetterAccess="Private" />
+          <Property Name="Nome" Type="String" Nullable="false" FixedLength="true" MaxLength="50" />
+          <NavigationProperty Name="Campos" Relationship="DataEntryEntityModel.DefinicaoCampo" FromRole="Definicao" ToRole="Campo" />
+        </EntityType>
+        <Association Name="DefinicaoCampo">
+          <End Type="DataEntryEntityModel.Definicao" Role="Definicao" Multiplicity="1" />
+          <End Type="DataEntryEntityModel.Campo" Role="Campo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Definicao">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Campo">
+              <PropertyRef Name="DefinicaoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IndexacaoCampo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Campo" Relationship="DataEntryEntityModel.IndexacaoCampo_Campo" FromRole="IndexacaoCampo" ToRole="Campo" />
+          <NavigationProperty Name="Documento" Relationship="DataEntryEntityModel.DocumentoIndexacaoCampo" FromRole="IndexacaoCampo" ToRole="Documento" />
+          <Property Name="DocumentoId" Type="Int32" Nullable="false" />
+          <Property Name="Valor" Type="String" MaxLength="Max" Nullable="false" />
+        </EntityType>
+        <Association Name="IndexacaoCampo_Campo">
+          <End Type="DataEntryEntityModel.IndexacaoCampo" Role="IndexacaoCampo" Multiplicity="*" />
+          <End Type="DataEntryEntityModel.Campo" Role="Campo" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Campo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndexacaoCampo">
+              <PropertyRef Name="CampoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Definicao" Relationship="DataEntryEntityModel.DocumentoDefinicao" FromRole="Documento" ToRole="Definicao" />
+          <NavigationProperty Name="IndexacaoCampos" Relationship="DataEntryEntityModel.DocumentoIndexacaoCampo" FromRole="Documento" ToRole="IndexacaoCampo" />
+          <NavigationProperty Name="Trabalho" Relationship="DataEntryEntityModel.TrabalhoDocumento" FromRole="Documento" ToRole="Trabalho" />
+          <Property Name="TrabalhoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="DocumentoDefinicao">
+          <End Type="DataEntryEntityModel.Documento" Role="Documento" Multiplicity="1" />
+          <End Type="DataEntryEntityModel.Definicao" Role="Definicao" Multiplicity="1" />
+        </Association>
+        <Association Name="DocumentoIndexacaoCampo">
+          <End Type="DataEntryEntityModel.Documento" Role="Documento" Multiplicity="1" />
+          <End Type="DataEntryEntityModel.IndexacaoCampo" Role="IndexacaoCampo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Documento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndexacaoCampo">
+              <PropertyRef Name="DocumentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Trabalho">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" cg:SetterAccess="Private" />
+          <NavigationProperty Name="Documentos" Relationship="DataEntryEntityModel.TrabalhoDocumento" FromRole="Trabalho" ToRole="Documento" />
+        </EntityType>
+        <Association Name="TrabalhoDocumento">
+          <End Type="DataEntryEntityModel.Trabalho" Role="Trabalho" Multiplicity="1" />
+          <End Type="DataEntryEntityModel.Documento" Role="Documento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabalho">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Documento">
+              <PropertyRef Name="TrabalhoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DataEntryEntityModel" />
+        <Alias Key="Target" Value="DataEntryEntityModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="DataEntryEntityModelContainer" StorageEntityContainer="DataEntryEntityModelTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

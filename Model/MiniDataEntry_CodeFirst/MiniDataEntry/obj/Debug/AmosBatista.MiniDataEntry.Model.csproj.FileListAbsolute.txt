@@ -1,0 +1,9 @@
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\MiniDataEntry.dll.config
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\MiniDataEntry.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\MiniDataEntry.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\EntityFramework.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\EntityFramework.xml
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\obj\Debug\MiniDataEntry.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Model\MiniDataEntry_2\MiniDataEntry\obj\Debug\MiniDataEntry.pdb

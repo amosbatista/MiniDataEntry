@@ -1,0 +1,9 @@
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\obj\Debug\AmosBatista.MiniDataEntry.Control.csprojResolveAssemblyReference.cache
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\AmosBatista.MiniDataEntry.Control.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\AmosBatista.MiniDataEntry.Control.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\MiniDataEntry.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\EntityFramework.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\MiniDataEntry.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\bin\Debug\EntityFramework.xml
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\obj\Debug\AmosBatista.MiniDataEntry.Control.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Control\AmosBatista.MiniDataEntry.Control\obj\Debug\AmosBatista.MiniDataEntry.Control.pdb

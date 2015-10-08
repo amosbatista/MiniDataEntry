@@ -1,0 +1,12 @@
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\Teste.exe.config
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\Teste.exe
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\Teste.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\AmosBatista.MiniDataEntry.Control.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\MiniDataEntry.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\EntityFramework.dll
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\AmosBatista.MiniDataEntry.Control.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\MiniDataEntry.pdb
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\bin\Debug\EntityFramework.xml
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\obj\Debug\Teste.csprojResolveAssemblyReference.cache
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\obj\Debug\Teste.exe
+C:\Users\ethidel\Desktop\Amos\MiniDataEntry\Tester\Teste\obj\Debug\Teste.pdb

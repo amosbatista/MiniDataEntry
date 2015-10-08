@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemplanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAMPO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEFINICAO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_CAMPO" Type="int" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_INDEXACAO_CAMPO" Type="int" />
+        </EntityType>
+        <EntityType Name="INDEXACAO_CAMPOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CAMPO" Type="int" Nullable="false" />
+          <Property Name="VALOR" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRABALHO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DATACRIACAO" Type="smalldatetime" Nullable="false" />
+          <Property Name="ID_DOCUMENTO" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DEFINICAO__ID_CA__20C1E124">
+          <End Role="CAMPO" Type="Self.CAMPO" Multiplicity="0..1" />
+          <End Role="DEFINICAO" Type="Self.DEFINICAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAMPO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DEFINICAO">
+              <PropertyRef Name="ID_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DOCUMENTO__ID_IN__267ABA7A">
+          <End Role="INDEXACAO_CAMPOS" Type="Self.INDEXACAO_CAMPOS" Multiplicity="0..1" />
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INDEXACAO_CAMPOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTO">
+              <PropertyRef Name="ID_INDEXACAO_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INDEXACAO__ID_CA__239E4DCF">
+          <End Role="CAMPO" Type="Self.CAMPO" Multiplicity="1" />
+          <End Role="INDEXACAO_CAMPOS" Type="Self.INDEXACAO_CAMPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAMPO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INDEXACAO_CAMPOS">
+              <PropertyRef Name="ID_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRABALHO__ID_DOC__29572725">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="TRABALHO" Type="Self.TRABALHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRABALHO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemplanModelStoreContainer">
+          <EntitySet Name="CAMPO" EntityType="Self.CAMPO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEFINICAO" EntityType="Self.DEFINICAO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="INDEXACAO_CAMPOS" EntityType="Self.INDEXACAO_CAMPOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRABALHO" EntityType="Self.TRABALHO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DEFINICAO__ID_CA__20C1E124" Association="Self.FK__DEFINICAO__ID_CA__20C1E124">
+            <End Role="CAMPO" EntitySet="CAMPO" />
+            <End Role="DEFINICAO" EntitySet="DEFINICAO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DOCUMENTO__ID_IN__267ABA7A" Association="Self.FK__DOCUMENTO__ID_IN__267ABA7A">
+            <End Role="INDEXACAO_CAMPOS" EntitySet="INDEXACAO_CAMPOS" />
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INDEXACAO__ID_CA__239E4DCF" Association="Self.FK__INDEXACAO__ID_CA__239E4DCF">
+            <End Role="CAMPO" EntitySet="CAMPO" />
+            <End Role="INDEXACAO_CAMPOS" EntitySet="INDEXACAO_CAMPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRABALHO__ID_DOC__29572725" Association="Self.FK__TRABALHO__ID_DOC__29572725">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+            <End Role="TRABALHO" EntitySet="TRABALHO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemplanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAMPO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEFINICAOs" Relationship="Self.FK__DEFINICAO__ID_CA__20C1E124" FromRole="CAMPO" ToRole="DEFINICAO" />
+          <NavigationProperty Name="INDEXACAO_CAMPOS" Relationship="Self.FK__INDEXACAO__ID_CA__239E4DCF" FromRole="CAMPO" ToRole="INDEXACAO_CAMPOS" />
+        </EntityType>
+        <EntityType Name="DEFINICAO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_CAMPO" Type="Int32" />
+          <NavigationProperty Name="CAMPO" Relationship="Self.FK__DEFINICAO__ID_CA__20C1E124" FromRole="DEFINICAO" ToRole="CAMPO" />
+        </EntityType>
+        <EntityType Name="DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_INDEXACAO_CAMPO" Type="Int32" />
+          <NavigationProperty Name="INDEXACAO_CAMPOS" Relationship="Self.FK__DOCUMENTO__ID_IN__267ABA7A" FromRole="DOCUMENTO" ToRole="INDEXACAO_CAMPOS" />
+          <NavigationProperty Name="TRABALHOes" Relationship="Self.FK__TRABALHO__ID_DOC__29572725" FromRole="DOCUMENTO" ToRole="TRABALHO" />
+        </EntityType>
+        <EntityType Name="INDEXACAO_CAMPOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CAMPO" Type="Int32" Nullable="false" />
+          <Property Name="VALOR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CAMPO" Relationship="Self.FK__INDEXACAO__ID_CA__239E4DCF" FromRole="INDEXACAO_CAMPOS" ToRole="CAMPO" />
+          <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK__DOCUMENTO__ID_IN__267ABA7A" FromRole="INDEXACAO_CAMPOS" ToRole="DOCUMENTO" />
+        </EntityType>
+        <EntityType Name="TRABALHO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DATACRIACAO" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK__TRABALHO__ID_DOC__29572725" FromRole="TRABALHO" ToRole="DOCUMENTO" />
+        </EntityType>
+        <Association Name="FK__DEFINICAO__ID_CA__20C1E124">
+          <End Role="CAMPO" Type="Self.CAMPO" Multiplicity="0..1" />
+          <End Role="DEFINICAO" Type="Self.DEFINICAO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAMPO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DEFINICAO">
+              <PropertyRef Name="ID_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__INDEXACAO__ID_CA__239E4DCF">
+          <End Role="CAMPO" Type="Self.CAMPO" Multiplicity="1" />
+          <End Role="INDEXACAO_CAMPOS" Type="Self.INDEXACAO_CAMPOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAMPO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="INDEXACAO_CAMPOS">
+              <PropertyRef Name="ID_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DOCUMENTO__ID_IN__267ABA7A">
+          <End Role="INDEXACAO_CAMPOS" Type="Self.INDEXACAO_CAMPOS" Multiplicity="0..1" />
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="INDEXACAO_CAMPOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DOCUMENTO">
+              <PropertyRef Name="ID_INDEXACAO_CAMPO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRABALHO__ID_DOC__29572725">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="TRABALHO" Type="Self.TRABALHO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TRABALHO">
+              <PropertyRef Name="ID_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemplanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAMPOes" EntityType="Self.CAMPO" />
+          <EntitySet Name="DEFINICAOs" EntityType="Self.DEFINICAO" />
+          <EntitySet Name="DOCUMENTOes" EntityType="Self.DOCUMENTO" />
+          <EntitySet Name="INDEXACAO_CAMPOS" EntityType="Self.INDEXACAO_CAMPOS" />
+          <EntitySet Name="TRABALHOes" EntityType="Self.TRABALHO" />
+          <AssociationSet Name="FK__DEFINICAO__ID_CA__20C1E124" Association="Self.FK__DEFINICAO__ID_CA__20C1E124">
+            <End Role="CAMPO" EntitySet="CAMPOes" />
+            <End Role="DEFINICAO" EntitySet="DEFINICAOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__INDEXACAO__ID_CA__239E4DCF" Association="Self.FK__INDEXACAO__ID_CA__239E4DCF">
+            <End Role="CAMPO" EntitySet="CAMPOes" />
+            <End Role="INDEXACAO_CAMPOS" EntitySet="INDEXACAO_CAMPOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DOCUMENTO__ID_IN__267ABA7A" Association="Self.FK__DOCUMENTO__ID_IN__267ABA7A">
+            <End Role="INDEXACAO_CAMPOS" EntitySet="INDEXACAO_CAMPOS" />
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRABALHO__ID_DOC__29572725" Association="Self.FK__TRABALHO__ID_DOC__29572725">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+            <End Role="TRABALHO" EntitySet="TRABALHOes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemplanModelStoreContainer" CdmEntityContainer="SistemplanEntities">
+          <EntitySetMapping Name="CAMPOes">
+            <EntityTypeMapping TypeName="SistemplanModel.CAMPO">
+              <MappingFragment StoreEntitySet="CAMPO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DEFINICAOs">
+            <EntityTypeMapping TypeName="SistemplanModel.DEFINICAO">
+              <MappingFragment StoreEntitySet="DEFINICAO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="ID_CAMPO" ColumnName="ID_CAMPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTOes">
+            <EntityTypeMapping TypeName="SistemplanModel.DOCUMENTO">
+              <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_INDEXACAO_CAMPO" ColumnName="ID_INDEXACAO_CAMPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INDEXACAO_CAMPOS">
+            <EntityTypeMapping TypeName="SistemplanModel.INDEXACAO_CAMPOS">
+              <MappingFragment StoreEntitySet="INDEXACAO_CAMPOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_CAMPO" ColumnName="ID_CAMPO" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRABALHOes">
+            <EntityTypeMapping TypeName="SistemplanModel.TRABALHO">
+              <MappingFragment StoreEntitySet="TRABALHO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DATACRIACAO" ColumnName="DATACRIACAO" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
